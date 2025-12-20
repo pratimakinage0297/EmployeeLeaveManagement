@@ -1,5 +1,6 @@
-const BASE_URL = 'https://freeapi.miniprojectideas.com/api/';
+const BASE_URL = 'https://freeapi.miniprojectideas.com/api/EmployeeLeave/';
 
 export const API = {
-  LOGIN: BASE_URL + 'EmployeeLeave/Login',
+  LOGIN: BASE_URL + 'Login',
+  GET_ALL_EMPLOYEE: BASE_URL + 'GetEmployees',
 };

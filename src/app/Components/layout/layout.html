@@ -1,1 +1,39 @@
-<p>layout works!</p>
+<div class="d-flex">
+
+  <!-- Sidebar -->
+  <nav class="sidebar bg-dark text-white vh-100 p-3">
+    <h5 class="text-center mb-4">Employee</h5>
+
+    <ul class="nav nav-pills flex-column gap-2">
+      <li class="nav-item">
+        <a class="nav-link text-white" routerLink="/dashboard">
+          Dashboard
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link text-white" routerLink="/leave">
+          Leave Management
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link text-white" routerLink="/employee">
+          Employees
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link text-white" (click)="onLogout()">
+          Logout
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="flex-grow-1 p-4">
+    <router-outlet></router-outlet>
+  </div>
+
+</div>

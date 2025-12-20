@@ -19,9 +19,20 @@ export class Login {
   constructor(private empService: EmployeeService, private route: Router) {}
 
   onSubmit() {
-    this.empService.onLogin(this.loginObj).subscribe((res) => {
-      console.log(res);
-      this.route.navigate(['/dashboard']);
+    this.empService.onLogin(this.loginObj).subscribe({
+      next: (res: any) => {
+        if (res.result) {
+          alert('login successfull');
+          localStorage.setItem('loggedInUser', JSON.stringify(res.data));
+          console.log(res);
+          this.route.navigate(['/dashboard']);
+        } else {
+          alert(res.message);
+        }
+      },
+      error: () => {
+        alert('API Error');
+      },
     });
     // console.log(this.loginObj);
   }
