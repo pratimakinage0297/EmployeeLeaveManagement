@@ -22,3 +22,8 @@ export interface EmployeeModel {
   emailId: string;
   role: string;
 }
+
+export interface DepartmentModel {
+  // deptId: number;
+  deptName: string;
+}

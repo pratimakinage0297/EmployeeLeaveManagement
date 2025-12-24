@@ -22,4 +22,8 @@ export class EmployeeService {
   getAllEmployee(): Observable<ApiResponseModal> {
     return this.http.get<ApiResponseModal>(API.GET_ALL_EMPLOYEE);
   }
+
+  getDepartments(): Observable<ApiResponseModal> {
+    return this.http.get<ApiResponseModal>(API.GET_DEPARTMENTS);
+  }
 }
