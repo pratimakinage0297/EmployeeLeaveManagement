@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { API } from '../../api.config';
-import { ApiResponseModal, loginModal } from '../Modal/Employee.Modal';
+import { ApiResponseModal, EmployeeModel, loginModal } from '../Modal/Employee.Modal';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
@@ -29,5 +29,9 @@ export class EmployeeService {
 
   getAllRoles(): Observable<ApiResponseModal> {
     return this.http.get<ApiResponseModal>(API.GET_ROLES);
+  }
+
+  createEmployee(formData: EmployeeModel): Observable<ApiResponseModal> {
+    return this.http.post<ApiResponseModal>(API.CREATE_EMPLOYEE, formData);
   }
 }

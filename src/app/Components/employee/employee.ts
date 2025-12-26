@@ -4,10 +4,11 @@ import { map, Observable } from 'rxjs';
 import { ApiResponseModal, DepartmentModel, EmployeeModel, Role } from '../../Modal/Employee.Modal';
 import { CommonModule } from '@angular/common';
 import { AddEmployeeModal } from '../../ModalComponent/add-employee-modal/add-employee-modal';
+import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-employee',
-  imports: [CommonModule, AddEmployeeModal],
+  imports: [CommonModule, AddEmployeeModal, FormsModule],
   templateUrl: './employee.html',
   styleUrl: './employee.css',
 })
@@ -16,6 +17,8 @@ export class Employee implements OnInit {
   showAddEmployeeModal: boolean = false;
   allEmployee: EmployeeModel[] = [];
   roleList$: Observable<Role[]> | undefined;
+
+  employeeObj: EmployeeModel = new EmployeeModel();
 
   constructor(private empService: EmployeeService) {}
 
@@ -53,6 +56,23 @@ export class Employee implements OnInit {
           }));
           console.log('all department data', this.AllDepartment);
         }
+      },
+      error: (res: ApiResponseModal) => {
+        alert(res.message);
+      },
+    });
+  }
+
+  onSubmit(form: NgForm) {
+    if (form.invalid) {
+      return;
+    }
+    console.log('form values', this.employeeObj);
+    this.empService.createEmployee(this.employeeObj).subscribe({
+      next: (res: ApiResponseModal) => {
+        alert('Employee created successfully');
+        this.CloseModal();
+        this.getAllEmployee();
       },
       error: (res: ApiResponseModal) => {
         alert(res.message);

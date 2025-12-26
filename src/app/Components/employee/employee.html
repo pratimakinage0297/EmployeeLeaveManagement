@@ -45,25 +45,25 @@
 
 
     <!-- Modal Content -->
-    <form>
+    <form #AddEmpForm="ngForm" (ngSubmit)="onSubmit(AddEmpForm)">
       <div class="mb-3">
         <label class="form-label">Employee Name</label>
-        <input type="text" class="form-control">
+        <input type="text" class="form-control" name="employeeName" [(ngModel)]="employeeObj.employeeName">
       </div>
 
       <div class="mb-3">
-        <label class="form-label">Contact Name</label>
-        <input type="text" class="form-control">
+        <label class="form-label">Contact No.</label>
+        <input type="text" class="form-control" name="contactNo" [(ngModel)]="employeeObj.contactNo">
       </div>
 
       <div class="mb-3">
         <label class="form-label">Email Id</label>
-        <input type="email" class="form-control">
+        <input type="email" class="form-control" name="emailId" [(ngModel)]="employeeObj.emailId">
       </div>
 
       <div class="mb-3">
         <label class="form-label">Department</label>
-        <select class="form-select" id="deptId">
+        <select class="form-select" id="deptId" name="deptName" [(ngModel)]="employeeObj.deptName">
           <option value="">Select Department</option>
           <option *ngFor="let department of AllDepartment">
             <!-- [value]="department.deptId"> -->
@@ -74,19 +74,21 @@
 
       <div class="mb-3">
         <label class="form-label">Gender</label>
-        <select class="form-select" id="deptId">
+        <select class="form-select" id="deptId" name="gender" [(ngModel)]="employeeObj.gender">
           <option>Select Gender</option>
+          <option>Male</option>
+          <option>Female</option>
         </select>
       </div>
 
       <div class="mb-3">
         <label class="form-label">Password</label>
-        <input type="password" class="form-control">
+        <input type="password" class="form-control" name="password" [(ngModel)]="employeeObj.password">
       </div>
 
       <div class="mb-3">
         <label class="form-label">Role</label>
-        <select class="form-select" id="roleId">
+        <select class="form-select" id="roleId" name="role" [(ngModel)]="employeeObj.role">
           <option value="">Select Role</option>
           <option *ngFor="let r of roleList$ | async">
             {{r}}
@@ -96,6 +98,7 @@
 
       <button class="btn btn-success">Save</button>
     </form>
+
 
 
   </app-add-employee-modal>
