@@ -86,7 +86,12 @@
 
       <div class="mb-3">
         <label class="form-label">Role</label>
-        <input type="text" class="form-control">
+        <select class="form-select" id="roleId">
+          <option value="">Select Role</option>
+          <option *ngFor="let r of roleList$ | async">
+            {{r}}
+          </option>
+        </select>
       </div>
 
       <button class="btn btn-success">Save</button>

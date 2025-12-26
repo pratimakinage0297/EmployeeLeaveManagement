@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../../service/employeeService';
-import { Observable } from 'rxjs';
-import { ApiResponseModal, DepartmentModel, EmployeeModel } from '../../Modal/Employee.Modal';
+import { map, Observable } from 'rxjs';
+import { ApiResponseModal, DepartmentModel, EmployeeModel, Role } from '../../Modal/Employee.Modal';
 import { CommonModule } from '@angular/common';
 import { AddEmployeeModal } from '../../ModalComponent/add-employee-modal/add-employee-modal';
 
@@ -15,10 +15,13 @@ export class Employee implements OnInit {
   AllDepartment: DepartmentModel[] = [];
   showAddEmployeeModal: boolean = false;
   allEmployee: EmployeeModel[] = [];
+  roleList$: Observable<Role[]> | undefined;
+
   constructor(private empService: EmployeeService) {}
 
   ngOnInit(): void {
     this.getAllEmployee();
+    this.roleList$ = this.empService.getAllRoles().pipe(map((res) => res.data));
   }
 
   openModal() {

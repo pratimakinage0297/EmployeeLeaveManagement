@@ -27,3 +27,5 @@ export interface DepartmentModel {
   // deptId: number;
   deptName: string;
 }
+
+export type Role = string;
